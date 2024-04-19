@@ -31,6 +31,6 @@ springdoc:
     tags-sorter: alpha
 
 jwt:
-  secret: a81ab9f9d0ddd18a6c27a8d56a8f07b3d32201d52310c58213428de8c28cadaa
-  access_token_expiration_ms: 360000000
-  refresh_token_expiration_ms: 1080000000
+  secret: ${JOBDAM_JWT_SECRET_KEY}
+  access_token_expiration_ms: ${JOBDAM_JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+  refresh_token_expiration_ms: ${JOBDAM_JWT_REFRESH_TOKEN_EXPIRE_MINUTES}
