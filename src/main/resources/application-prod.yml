@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:mysql://${JOBDAM_DB_HOST}:3306/${JOBDAM_DB_NAME}?serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${JOBDAM_DB_USER}
+    password: ${JOBDAM_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+
+springdoc:
+  packages-to-scan:
+    - com.jobdamserver.domain.auth.controller
+    - com.jobdamserver.domain.room.controller
+    - com.jobdamserver.domain.chat.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: method
+    tags-sorter: alpha
+
+cors:
+  cors_allowed_origin: ${PICKTOSS_CORS_ALLOWED_ORIGIN}
+
+jwt:
+  secret: ${JOBDAM_JWT_SECRET_KEY}
+  access_token_expiration_ms: ${JOBDAM_JWT_ACCESS_TOKEN_EXPIRE_MINUTES}
+  refresh_token_expiration_ms: ${JOBDAM_JWT_REFRESH_TOKEN_EXPIRE_MINUTES}

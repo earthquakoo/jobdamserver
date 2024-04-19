@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        # show_sql: true
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.orm.jdbc.bind: trace #스프링 부트 3.x, hibernate6
+
+springdoc:
+  packages-to-scan:
+    - com.jobdamserver.domain.auth.controller
+    - com.jobdamserver.domain.room.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: method
+    tags-sorter: alpha
+
+jwt:
+  secret: a81ab9f9d0ddd18a6c27a8d56a8f07b3d32201d52310c58213428de8c28cadaa
+  access_token_expiration_ms: 360000000
+  refresh_token_expiration_ms: 1080000000
